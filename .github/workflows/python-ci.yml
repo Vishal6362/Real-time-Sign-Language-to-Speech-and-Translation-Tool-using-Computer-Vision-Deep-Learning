@@ -2,9 +2,9 @@ name: Python Hand Gesture CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -24,14 +24,33 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Verify files
+    - name: Verify project files
       run: |
         ls -R
-        echo "Checking model files..."
         test -f mp_hand_gesture/saved_model.pb
         test -f gesture.names
         test -f data.pickle
 
-    - name: Run application (dry check)
+    - name: Dry run check
       run: |
         python hand_gesture_translator.py --help || true
+
+    # 🔹 Upload project as artifact (GIVES LINK)
+    - name: Upload project artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hand-gesture-app
+        path: |
+          hand_gesture_translator.py
+          mp_hand_gesture/
+          gesture.names
+          data.pickle
+          README.md
+
+    # 🔹 Show link in GitHub Actions Summary
+    - name: Job Summary
+      run: |
+        echo "## ✅ Hand Gesture CI Completed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📦 Download Artifact:" >> $GITHUB_STEP_SUMMARY
+        echo "Go to **Actions → This Workflow → Artifacts → hand-gesture-app**" >> $GITHUB_STEP_SUMMARY

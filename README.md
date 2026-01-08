@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🤟 SIGNSPEAK: Bridging Gestures, Speech, and Translation 🌐🗣️
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
@@ -127,3 +128,6 @@ This project is licensed under the **MIT License**.
 [LinkedIn](https://www.linkedin.com/in/rohith124) | [GitHub](https://github.com/rds-124)
 
 > ⭐ If you found this useful, star the repo and share it!
+=======
+# Real-time-Sign-Language-to-Speech-and-Translation-Tool-using-Computer-Vision-Deep-Learning
+>>>>>>> efa946b63a99a072000f299e34560d9481315ca4
